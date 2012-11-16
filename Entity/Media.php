@@ -33,6 +33,21 @@ class Media
     public $file;
 
     /**
+     * @var string $name
+     */
+    private $name;
+
+    /**
+     * @var datetime $createdAt
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime $updatedAt
+     */
+    private $updatedAt;
+
+    /**
      * Set Id
      *
      * @param integer $id
@@ -71,20 +86,6 @@ class Media
     {
         return $this->path;
     }
-    /**
-     * @var string $name
-     */
-    private $name;
-
-    /**
-     * @var datetime $createdAt
-     */
-    private $createdAt;
-
-    /**
-     * @var datetime $updatedAt
-     */
-    private $updatedAt;
 
     /**
      * Set name
