@@ -40,7 +40,7 @@ class RogerUniqueEntityValidator extends DoctrineConstraints\UniqueEntityValidat
             throw new UnexpectedTypeException($constraint->fields, 'array');
         }
 
-        $fields = (array)$constraint->fields;
+        $fields = (array) $constraint->fields;
 
         if (count($fields) == 0) {
             throw new ConstraintDefinitionException("At least one field has to be specified.");

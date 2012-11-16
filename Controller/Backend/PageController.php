@@ -135,9 +135,7 @@ class PageController extends Controller
                 }
 
                 return $this->redirect($this->generateUrl('roger_cms_page_list'));
-            }
-            else
-            {
+            } else {
                 $hasErrors = true;
             }
         }
@@ -331,7 +329,6 @@ class PageController extends Controller
     private function matchBlocks($pageContent)
     {
         if (!preg_match_all('#{% block (?P<block_name>(.*)) %}(?P<block_content>(.*)){% endblock %}#sU', $pageContent, $matches)) {
-
             return false;
         }
 

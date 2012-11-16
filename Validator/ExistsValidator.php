@@ -33,7 +33,7 @@ class ExistsValidator extends ConstraintValidator
         $entity = $this->em->getRepository($constraint->entity)->findOneBy(array($constraint->property => $value));
 
         // Check $entity
-        if(!$entity) {
+        if (!$entity) {
             // Validation fail, set message
             $this->setMessage(sprintf($constraint->message, $constraint->property, $value));
 
