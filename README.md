@@ -1,22 +1,15 @@
 Theodo RogerCMSBundle
 =====================
 
-
-WARNING: This bundle is still under developpement and is not considered stable.
-
+WARNING: This fork is really for personal use and available here only for
+hosting purpose. Expect things to be broken, commits to disappear and other
+inconveniences. If you DO use this bundle, drop me a mail and I will start
+working correctly. I might even start tagging release, heh.
 
 ## Installation
 
-
 ### Step 1: Downloading the bundle
 To add the bundle to your project add the following entry to your deps file:
-
-``` bash
-[RogerCmsBundle]
-    git=https://github.com/theodo/TheodoRogerCmsBundle.git
-    target=/bundles/Theodo/RogerCmsBundle
-```
-
 
 ### Step 2: Dependencies
 
@@ -32,45 +25,7 @@ Add the Roger repository:
 
 Then run ```php composer.phar install``` and you are done. You can now jump to the step 4.
 
-**Using the vendors script**
-
-Add the following lines to your `deps` file:
-
-``` bash
-[DoctrineExtensionsBundle]
-    git=https://github.com/stof/StofDoctrineExtensionsBundle.git
-    version=origin/master
-    target=/bundles/Stof/DoctrineExtensionsBundle
-
-[DoctrineExtensions]
-    git=http://github.com/l3pp4rd/DoctrineExtensions.git
-    version=origin/master
-    target=/gedmo-doctrine-extensions
-```
-
-**Notice:**
-TheodoRogerCms depends on Twig and it's not usable without it.
-Due to some bugs in previous versions of Twig, v 1.2.0 or higher is required.
-
-### Step 3: autoload.php
-
-You need to register the `Theodo` namespace before using the bundle. Add the following line to your `app/autoload.php` file: `'Theodo' => __DIR__.'/../vendor/bundles',`.
-As TheodoRogerCms depends on the DoctrineExtensionsBundle and the DoctrineExtensions library you also need to register them in the autoload.
-
-``` php
-    use Symfony\Component\ClassLoader\UniversalClassLoader;
-    use Doctrine\Common\Annotations\AnnotationRegistry;
-
-    $loader = new UniversalClassLoader();
-    $loader->registerNamespaces(array(
-        'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
-        'Stof'             => __DIR__.'/../vendor/bundles',
-        'Gedmo'            => __DIR__.'/../vendor/gedmo-doctrine-extensions/lib',
-        'Theodo'           => __DIR__.'/../vendor/bundles',
-    ));
-```
-
-### Step 4: AppKernel.php
+### Step 3: AppKernel.php
 
 Register TheodoRogerCmsBundle in your `app/AppKernel.php` file:
 
