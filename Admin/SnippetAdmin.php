@@ -63,4 +63,34 @@ class SnippetAdmin extends Admin
             ->add('lifetime')
         ;
     }
+
+    public function preUpdate($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postUpdate($object)
+    {
+        $this->warmup($object);
+    }
+
+    public function prePersist($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postPersist($object)
+    {
+        $this->warmup($object);
+    }
+
+    private function invalidate($object)
+    {
+        $this->container->get('roger.caching')->invalidate('snippet:'.$object->getName());
+    }
+
+    private function warmup($object)
+    {
+        $this->container->get('roger.caching')->warmup('snippet:'.$object->getName());
+    }
 }
