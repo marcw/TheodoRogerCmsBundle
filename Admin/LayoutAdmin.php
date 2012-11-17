@@ -9,8 +9,8 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
 use Theodo\RogerCmsBundle\Repository\PageRepository;
-use Symfony\Component\DependentInjection\ContainerAwareInterface;
-use Symfony\Component\DependentInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * LayoutAdmin.
@@ -29,10 +29,9 @@ class LayoutAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('name')
             ->add('content')
             ->add('contentType', 'choice', array('choices' => PageRepository::getAvailableContentTypes()))
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 
@@ -41,17 +40,15 @@ class LayoutAdmin extends Admin implements ContainerAwareInterface
         $datagridMapper
             ->add('id')
             ->add('content')
-            ->add('contentType')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('name')
+            ->addIdentifier('name')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 
@@ -60,7 +57,7 @@ class LayoutAdmin extends Admin implements ContainerAwareInterface
         $this->invalidate($object);
     }
 
-    public function postUpdate()
+    public function postUpdate($object)
     {
         $this->warmup($object);
     }

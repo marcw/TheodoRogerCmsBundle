@@ -8,6 +8,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 /**
  * MediaAdmin.
  *
@@ -15,6 +18,13 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class MediaAdmin extends Admin
 {
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
