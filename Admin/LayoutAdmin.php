@@ -9,14 +9,23 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
 use Theodo\RogerCmsBundle\Repository\PageRepository;
+use Symfony\Component\DependentInjection\ContainerAwareInterface;
+use Symfony\Component\DependentInjection\ContainerInterface;
 
 /**
  * LayoutAdmin.
  *
  * @author Marc Weistroff <marc@weistroff.net>
  */
-class LayoutAdmin extends Admin
+class LayoutAdmin extends Admin implements ContainerAwareInterface
 {
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -44,5 +53,35 @@ class LayoutAdmin extends Admin
             ->addIdentifier('id')
             ->add('name')
         ;
+    }
+
+    public function preUpdate($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postUpdate()
+    {
+        $this->warmup($object);
+    }
+
+    public function prePersist($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postPersist($object)
+    {
+        $this->warmup($object);
+    }
+
+    private function invalidate($object)
+    {
+        $this->container->get('roger.caching')->invalidate('layout:'.$object->getName());
+    }
+
+    private function warmup($object)
+    {
+        $this->container->get('roger.caching')->warmup('layout:'.$object->getName());
     }
 }

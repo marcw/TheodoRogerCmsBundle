@@ -8,6 +8,9 @@
             <argument />
             <argument>Theodo\RogerCmsBundle\Entity\Layout</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="roger_cms.admin.page" class="Theodo\RogerCmsBundle\Admin\PageAdmin">
@@ -15,6 +18,9 @@
             <argument />
             <argument>Theodo\RogerCmsBundle\Entity\Page</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="roger_cms.admin.media" class="Theodo\RogerCmsBundle\Admin\MediaAdmin">
@@ -22,6 +28,9 @@
             <argument />
             <argument>Theodo\RogerCmsBundle\Entity\Media</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="roger_cms.admin.snippet" class="Theodo\RogerCmsBundle\Admin\SnippetAdmin">
@@ -29,6 +38,9 @@
             <argument />
             <argument>Theodo\RogerCmsBundle\Entity\Snippet</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
     </services>
