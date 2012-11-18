@@ -28,24 +28,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class PageController extends Controller
 {
     /**
-     * List pages
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
-     */
-    public function indexAction()
-    {
-        if (false == $this->get('security.context')->isGranted('ROLE_ROGER_READ_CONTENT')) {
-            throw new AccessDeniedException('You are not allowed to list pages.');
-        }
-
-        // Retrieve pages
-        $pages = $this->get('roger.content_repository')->getFirstTwoLevelPages();
-
-        return $this->render('TheodoRogerCmsBundle:Page:index.html.twig', array('pages' => $pages));
-    }
-
-    /**
      * Edit page action
      *
      * @param integer $id       Id of page to edit. Null for new page.
@@ -150,46 +132,6 @@ class PageController extends Controller
                 'layouts'     => $layouts,
                 'layout_name' => $layoutName,
                 'tabs'        => $tabs
-            )
-        );
-    }
-
-    /**
-     * Remove page action
-     *
-     * @param integer $id Id of page to remove
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
-     *
-     * @author Vincent Guillon <vincentg@theodo.fr>
-     * @since 2011-06-21
-     */
-    public function removeAction($id)
-    {
-        if (false == $this->get('security.context')->isGranted('ROLE_ROGER_DELETE_CONTENT')) {
-            throw new AccessDeniedException('You are not allowed to delete this page.');
-        }
-
-        // Retrieve request
-        $request = $this->getRequest();
-
-        // Retrieve page
-        $page = $this->get('roger.content_repository')->findOneById($id);
-
-        // Request is post
-        if ($request->getMethod() == 'POST') {
-            // Delete page
-            $this->get('roger.content_repository')->remove($page);
-
-            return $this->redirect($this->generateUrl('roger_cms_page_list'));
-        }
-
-        return $this->render(
-            'TheodoRogerCmsBundle:Page:remove.html.twig',
-            array(
-                'page' => $page
             )
         );
     }
