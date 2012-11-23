@@ -322,7 +322,7 @@ class Page
      *
      * @param Theodo\RogerCmsBundle\Entity\Page $parent
      */
-    public function setParent(\Theodo\RogerCmsBundle\Entity\Page $parent)
+    public function setParent(\Theodo\RogerCmsBundle\Entity\Page $parent = null)
     {
         $this->parent = $parent;
     }

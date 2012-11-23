@@ -2,36 +2,24 @@
 
 namespace Theodo\RogerCmsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * SnippetAdmin.
  *
  * @author Marc Weistroff <marc@weistroff.net>
  */
-class SnippetAdmin extends Admin
+class SnippetAdmin extends AbstractAdmin
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name')
-            ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('content', null, array('attr' => array('class' => 'code-editor', 'data-mode' => 'jinja2')))
             ->add('cacheable')
             ->add('public')
             ->add('lifetime')
@@ -43,8 +31,6 @@ class SnippetAdmin extends Admin
         $datagridMapper
             ->add('name')
             ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('cacheable')
             ->add('public')
             ->add('lifetime')
@@ -55,9 +41,6 @@ class SnippetAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('cacheable')
             ->add('public')
             ->add('lifetime')

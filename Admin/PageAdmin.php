@@ -2,33 +2,42 @@
 
 namespace Theodo\RogerCmsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Theodo\RogerCmsBundle\Repository\PageRepository;
 
 /**
  * PageAdmin.
  *
  * @author Marc Weistroff <marc@weistroff.net>
  */
-class PageAdmin extends Admin
+class PageAdmin extends AbstractAdmin
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+            ->add('name')
+            ->add('content', null, array('attr' => array('class' => 'code-editor', 'data-mode' => 'jinja2')))
+            ->with('Tree')
+                ->add('parent')
+                ->add('breadcrumb')
+            ->end()
+            ->with('SEO')
+                ->add('title')
+                ->add('keywords')
+                ->add('description')
+            ->end()
+            ->with('Workflow')
+                ->add('status', 'choice', array('choices' => PageRepository::getAvailableStatus()))
+                ->add('public', null, array('required' => false))
+            ->end()
+            ->with('Cache')
+                ->add('lifetime')
+                ->add('cacheable', null, array('required' => false))
+            ->end()
+            ->add('contentType', 'choice', array('choices' => PageRepository::getAvailableContentTypes()))
         ;
     }
 
@@ -42,11 +51,10 @@ class PageAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('name')
+            ->addIdentifier('name')
             ->add('status')
-            ->add('parent')
-            ->add('children')
+            //->add('parent', null, array('associated_tostring' => 'name'))
+            //->add('children',)
             ->add('title')
             ->add('public')
             ->add('lifetime')

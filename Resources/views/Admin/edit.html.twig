@@ -1,0 +1,26 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/theodorogercms/js/codemirror2/lib/codemirror.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/theodorogercms/js/codemirror2/theme/vibrant-ink.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/theodorogercms/js/codemirror2/lib/codemirror.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/theodorogercms/js/codemirror2/mode/jinja2/jinja2.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.code-editor').each(function(index, el) {
+                codeMirror = CodeMirror.fromTextArea(el, {
+                    'mode': $(this).attr('data-mode'),
+                    'indentUnit': 4,
+                    'lineNumbers': true,
+                    'indentWithTab': false,
+                    'lineWrapping': true
+                });
+            })
+        });
+    </script>
+{% endblock %}

@@ -2,35 +2,24 @@
 
 namespace Theodo\RogerCmsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-
+use Sonata\AdminBundle\Validator\ErrorElement;
 use Theodo\RogerCmsBundle\Repository\PageRepository;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * LayoutAdmin.
  *
  * @author Marc Weistroff <marc@weistroff.net>
  */
-class LayoutAdmin extends Admin implements ContainerAwareInterface
+class LayoutAdmin extends AbstractAdmin
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name')
-            ->add('content')
+            ->add('content', null, array('attr' => array('class' => 'code-editor', 'data-mode' => 'jinja2')))
             ->add('contentType', 'choice', array('choices' => PageRepository::getAvailableContentTypes()))
         ;
     }
