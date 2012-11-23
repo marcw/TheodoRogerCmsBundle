@@ -20,9 +20,9 @@ class SnippetAdmin extends AbstractAdmin
         $formMapper
             ->add('name')
             ->add('content', null, array('attr' => array('class' => 'code-editor', 'data-mode' => 'jinja2')))
-            ->add('cacheable')
-            ->add('public')
-            ->add('lifetime')
+            ->add('cacheable', null, array('required' => false))
+            ->add('public', null, array('required' => false))
+            ->add('lifetime', null, array('required' => false))
         ;
     }
 
