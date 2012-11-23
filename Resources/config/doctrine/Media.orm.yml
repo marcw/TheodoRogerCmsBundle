@@ -26,8 +26,6 @@ Theodo\RogerCmsBundle\Entity\Media:
                 timestampable:
                     on: update
     lifecycleCallbacks:
-        prePersist: [ preUpload ]
-        postPersist: [ upload ]
-        preUpdate: [ preUpload ]
-        postUpdate: [ upload ]
-        postRemove: [ removeUpload ]
+        postRemove: [removeFile]
+        prePersist: [updateFilePath, upload]
+        preUpdate: [updateFilePath, upload]

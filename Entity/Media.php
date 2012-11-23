@@ -42,7 +42,7 @@ class Media
      */
     private $createdAt;
 
-    /**
+    /*
      * @var datetime $updatedAt
      */
     private $updatedAt;
@@ -147,21 +147,13 @@ class Media
         return $this->updatedAt;
     }
 
-    /**
-     * @ORM\prePersist
-     * @ORM\preUpdate
-     */
-    public function preUpload()
+    public function updateFilePath()
     {
         if ($this->file) {
             $this->setPath(md5($this->name).'.'.$this->file->guessExtension());
         }
     }
 
-    /**
-     * @ORM\postPersist
-     * @ORM\postUpdate
-     */
     public function upload()
     {
         if ($this->file == null) {
@@ -176,10 +168,7 @@ class Media
         unset($this->file);
     }
 
-    /**
-     * @ORM\postRemove
-     */
-    public function removeUpload()
+    public function removeFile()
     {
         if ($file = $this->getFullPath()) {
             if (file_exists($file)) {
@@ -205,7 +194,7 @@ class Media
      */
     public static function getUploadRootDir()
     {
-      return 'uploads';
+        return 'uploads';
     }
 
     /**
