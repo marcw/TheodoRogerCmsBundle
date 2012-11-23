@@ -15,6 +15,8 @@ use Theodo\RogerCmsBundle\Repository\PageRepository;
  */
 class LayoutAdmin extends AbstractAdmin
 {
+    protected $cacheKeyPrefix = 'layout';
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -41,33 +43,4 @@ class LayoutAdmin extends AbstractAdmin
         ;
     }
 
-    public function preUpdate($object)
-    {
-        $this->invalidate($object);
-    }
-
-    public function postUpdate($object)
-    {
-        $this->warmup($object);
-    }
-
-    public function prePersist($object)
-    {
-        $this->invalidate($object);
-    }
-
-    public function postPersist($object)
-    {
-        $this->warmup($object);
-    }
-
-    private function invalidate($object)
-    {
-        $this->container->get('roger.caching')->invalidate('layout:'.$object->getName());
-    }
-
-    private function warmup($object)
-    {
-        $this->container->get('roger.caching')->warmup('layout:'.$object->getName());
-    }
 }

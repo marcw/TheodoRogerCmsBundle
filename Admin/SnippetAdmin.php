@@ -15,6 +15,8 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class SnippetAdmin extends AbstractAdmin
 {
+    protected $cacheKeyPrefix = 'snippet';
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

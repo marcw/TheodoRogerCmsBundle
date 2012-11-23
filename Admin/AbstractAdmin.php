@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 abstract class AbstractAdmin extends BaseAdmin implements ContainerAwareInterface
 {
+    protected $cacheKeyPrefix = null;
     protected $container;
 
     public function setContainer(ContainerInterface $container = null)
@@ -30,5 +31,40 @@ abstract class AbstractAdmin extends BaseAdmin implements ContainerAwareInterfac
                 return parent::getTemplate($name);
                 break;
         }
+    }
+
+
+    private function invalidate($object)
+    {
+        if ($this->cacheKeyPrefix) {
+            $this->container->get('roger.caching')->invalidate(sprintf('%s:%s', $this->cacheKeyPrefix, $object->getName()));
+        }
+    }
+
+    private function warmup($object)
+    {
+        if ($this->cacheKeyPrefix) {
+            $this->container->get('roger.caching')->warmup(sprintf('%s:%s', $this->cacheKeyPrefix, $object->getName()));
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postUpdate($object)
+    {
+        $this->warmup($object);
+    }
+
+    public function prePersist($object)
+    {
+        $this->invalidate($object);
+    }
+
+    public function postPersist($object)
+    {
+        $this->warmup($object);
     }
 }

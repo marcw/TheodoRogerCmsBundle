@@ -56,11 +56,6 @@ class Page
     private $parentId;
 
     /**
-     * @var integer $layoutId
-     */
-    private $layoutId;
-
-    /**
      * @var Theodo\RogerCmsBundle\Entity\Page
      */
     private $children;
@@ -255,46 +250,6 @@ class Page
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set parentId
-     *
-     * @param integer $parentId
-     */
-    public function setParentId($parentId)
-    {
-        $this->parentId = $parentId;
-    }
-
-    /**
-     * Get parentId
-     *
-     * @return integer $parentId
-     */
-    public function getParentId()
-    {
-        return $this->parentId;
-    }
-
-    /**
-     * Set layoutId
-     *
-     * @param integer $layoutId
-     */
-    public function setLayoutId($layoutId)
-    {
-        $this->layoutId = $layoutId;
-    }
-
-    /**
-     * Get layoutId
-     *
-     * @return integer $layoutId
-     */
-    public function getLayoutId()
-    {
-        return $this->layoutId;
     }
 
     /**

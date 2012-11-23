@@ -18,8 +18,7 @@ class MediaAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
-            ->add('path')
-            ->add('file')
+            ->add('file', 'file')
         ;
     }
 
@@ -27,8 +26,6 @@ class MediaAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-            ->add('path')
-            ->add('file')
         ;
     }
 
@@ -36,8 +33,6 @@ class MediaAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('path')
-            ->add('file')
         ;
     }
 }

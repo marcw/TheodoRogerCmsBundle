@@ -33,10 +33,6 @@ Theodo\RogerCmsBundle\Entity\Page:
         status:
             type: string
             length: 127
-        parentId:
-            column: parent_id
-            type: integer
-            nullable: true
         contentType:
             column: content_type
             type: string

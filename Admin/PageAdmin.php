@@ -15,6 +15,8 @@ use Theodo\RogerCmsBundle\Repository\PageRepository;
  */
 class PageAdmin extends AbstractAdmin
 {
+    protected $cacheKeyPrefix = 'page';
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
