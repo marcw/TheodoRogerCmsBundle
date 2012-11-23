@@ -55,6 +55,11 @@ class Snippet
      */
     private $lifetime;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * Set id
      *

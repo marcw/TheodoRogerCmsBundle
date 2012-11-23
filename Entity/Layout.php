@@ -43,6 +43,11 @@ class Layout
      */
     private $updatedAt;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * Set Id
      *
