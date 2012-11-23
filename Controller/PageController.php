@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Theodo\RogerCmsBundle\Controller\Frontend;
+namespace Theodo\RogerCmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ use Theodo\RogerCmsBundle\Repository\PageRepository;
 /**
  * Handles displaying CMS pages
  */
-class FrontendController extends Controller
+class PageController extends Controller
 {
     /**
      * Displays a Roger page
@@ -31,7 +31,7 @@ class FrontendController extends Controller
      * @author Mathieu Dähne <mathieud@theodo.fr>
      * @since 2011-06-21
      */
-    public function pageAction($slug, $variables = array())
+    public function showAction($slug, $variables = array())
     {
         // Get corresponding page
         if (!$slug) {
