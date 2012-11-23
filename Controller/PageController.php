@@ -65,10 +65,7 @@ class PageController extends Controller
 
         $response->headers->set('Content-Type', $page->getContentType());
 
-        return $this->get('roger.templating')
-            ->renderResponse(
-                'page:'.$page->getName(), array('page' => $page) + $variables, $response
-            );
+        return $this->get('roger.templating')->renderResponse('page:'.$page->getName(), array('page' => $page) + $variables, $response);
     }
 
     /**
