@@ -6,6 +6,8 @@ hosting purpose. Expect things to be broken, commits to disappear and other
 inconveniences. If you DO use this bundle, drop me a mail and I will start
 working correctly. I might even start tagging release, heh.
 
+The documentation might be completely outdated.
+
 ## Installation
 
 ### Step 1: Downloading the bundle

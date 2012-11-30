@@ -48,7 +48,7 @@ class RogerActionsExtension extends \Twig_Extension
             $array = explode(':', $name);
             $name = end($array);
         } else {
-            $controller = 'TheodoRogerCmsBundle:Frontend\Frontend:snippet';
+            $controller = 'TheodoRogerCmsBundle:Frontend:snippet';
         }
 
         $params['name'] = $name;

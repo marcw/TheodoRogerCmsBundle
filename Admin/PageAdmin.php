@@ -54,6 +54,7 @@ class PageAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
+            ->add('slug')
             ->add('status')
             //->add('parent', null, array('associated_tostring' => 'name'))
             //->add('children',)

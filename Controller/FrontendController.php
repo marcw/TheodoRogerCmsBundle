@@ -18,7 +18,7 @@ use Theodo\RogerCmsBundle\Repository\PageRepository;
 /**
  * Handles displaying CMS pages
  */
-class PageController extends Controller
+class FrontendController extends Controller
 {
     /**
      * Displays a Roger page
