@@ -60,7 +60,7 @@ class RogerRoutingExtension extends \Twig_Extension
     {
         $page = $this->em->getRepository('TheodoRogerCmsBundle:Page')->findOneBySlug($slug);
         if ($page) {
-            return $this->generator->generate('page', array('slug' => $page->getFullSlug()), true);
+            return $this->generator->generate('roger_cms_page', array('slug' => $page->getFullSlug()), true);
         }
 
         return '#';
